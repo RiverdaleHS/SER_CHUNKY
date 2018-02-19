@@ -6,6 +6,7 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.kauailabs.navx.frc.AHRS;
 import com.team2915.SER_CHUNKY.RobotMap;
 import com.team2915.SER_CHUNKY.RobotMap.Chassis.Solenoids;
+import com.team2915.SER_CHUNKY.commands.chassis.DriveOpenLoop;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.Encoder;
@@ -49,7 +50,7 @@ public class Chassis extends Subsystem {
     leftSlaveA.setInverted(true);
     leftSlaveB.setInverted(true);
 
-    shifter.set(Value);
+    shiftLow();
     leftEncoder.reset();
     rightEncoder.reset();
     navx.reset();

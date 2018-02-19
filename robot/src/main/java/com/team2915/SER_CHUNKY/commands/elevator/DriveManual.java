@@ -1,4 +1,30 @@
 package com.team2915.SER_CHUNKY.commands.elevator;
 
-public class DriveManual {
+import com.team2915.SER_CHUNKY.Robot;
+import edu.wpi.first.wpilibj.command.Command;
+
+public class DriveManual extends Command {
+
+  public DriveManual() {
+    requires(Robot.elevator);
+  }
+
+  @Override
+  protected void execute() {
+    super.execute();
+    if (!Robot.elevator.isUp() || !Robot.elevator.isDown()) {
+      if (Math.abs(Robot.io.getElevatorThrottle()) > 0.02) {
+        Robot.elevator.setSpeed(Robot.io.getElevatorThrottle());
+      } else {
+        Robot.elevator.setSpeed(0);
+      }
+    }else {
+      Robot.elevator.setSpeed(0);
+    }
+  }
+
+  @Override
+  protected boolean isFinished() {
+    return false;
+  }
 }

@@ -4,11 +4,10 @@ import com.team254.lib.util.DriveSignal;
 import com.team254.lib.util.Util;
 
 /**
- * Helper class to implement "Cheesy Drive". "Cheesy Drive" simply means that
- * the "turning" stick controls the curvature of the robot's path rather than
- * its rate of heading change. This helps make the robot more controllable at
- * high speeds. Also handles the robot's quick turn functionality - "quick turn"
- * overrides constant-curvature turning for turn-in-place maneuvers.
+ * Helper class to implement "Cheesy Drive". "Cheesy Drive" simply means that the "turning" stick
+ * controls the curvature of the robot's path rather than its rate of heading change. This helps
+ * make the robot more controllable at high speeds. Also handles the robot's quick turn
+ * functionality - "quick turn" overrides constant-curvature turning for turn-in-place maneuvers.
  */
 public class CheesyDriveHelper {
 
@@ -30,7 +29,8 @@ public class CheesyDriveHelper {
     if (isQuickTurn) {
       if (Math.abs(throttle) < 0.2) {
         double alpha = 0.1;
-        mQuickStopAccumulator = (1 - alpha) * mQuickStopAccumulator + alpha * Util.limit(wheel, 1.0) * 2;
+        mQuickStopAccumulator =
+            (1 - alpha) * mQuickStopAccumulator + alpha * Util.limit(wheel, 1.0) * 2;
       }
       overPower = 1.0;
       angularPower = wheel;

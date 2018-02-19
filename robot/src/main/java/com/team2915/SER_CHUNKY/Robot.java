@@ -15,6 +15,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class Robot extends IterativeRobot {
 
+  public static IO io = new IO();
+
   public static Chassis chassis = new Chassis();
   public static Climber climber = new Climber();
   public static Elevator elevator = new Elevator();

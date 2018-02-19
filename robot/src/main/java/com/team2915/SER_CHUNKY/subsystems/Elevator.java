@@ -2,6 +2,7 @@ package com.team2915.SER_CHUNKY.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.StatusFrameEnhanced;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.team2915.SER_CHUNKY.RobotMap.Elevator.Motors;
@@ -20,6 +21,8 @@ public class Elevator extends Subsystem {
   private TalonSRX right = new TalonSRX(Motors.RIGHT);
 
   public Elevator() {
+    left.setNeutralMode(NeutralMode.Brake);
+    right.setNeutralMode(NeutralMode.Brake);
     right.setInverted(true);
     right.set(ControlMode.Follower, left.getDeviceID());
 
@@ -67,6 +70,10 @@ public class Elevator extends Subsystem {
 
   }
 
+  public void zeroEncoders(){
+    left.setSelectedSensorPosition(0, 0, 10);
+  }
+
   public void setSpeed(double speed) {
     left.set(ControlMode.PercentOutput, speed);
   }
@@ -74,4 +81,5 @@ public class Elevator extends Subsystem {
   public void setMotionMagicSetpoint(double setpoint) {
     left.set(ControlMode.MotionMagic, setpoint);
   }
+
 }
