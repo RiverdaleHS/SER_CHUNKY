@@ -2,7 +2,6 @@ package com.team2915.SER_CHUNKY.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
-import com.team2915.SER_CHUNKY.Robot;
 import com.team2915.SER_CHUNKY.RobotMap;
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.Ultrasonic;
@@ -28,7 +27,7 @@ public class Intake extends Subsystem {
     setDefaultCommand();
   }
 
-  public double getCubeDistanceInches(){
+  public double getCubeDistanceInches() {
     return cubeUltrasonic.getRangeInches();
   }
 
@@ -56,7 +55,7 @@ public class Intake extends Subsystem {
     rightFront.set(speed);
   }
 
-  public void setRear(double speed){
+  public void setRear(double speed) {
     leftRear.set(ControlMode.PercentOutput, speed);
     rightRear.set(ControlMode.PercentOutput, speed);
   }

@@ -9,7 +9,7 @@ public class Climber extends Subsystem {
 
   private Spark climber = new Spark(Motors.CLIMBER);
 
-  public void setClimber(double speed){
+  public void setClimber(double speed) {
     climber.set(speed);
   }
 
