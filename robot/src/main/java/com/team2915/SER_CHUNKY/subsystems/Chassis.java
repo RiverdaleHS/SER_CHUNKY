@@ -61,11 +61,11 @@ public class Chassis extends Subsystem {
     setDefaultCommand(new DriveOpenLoop());
   }
 
-  public void shiftLow(){
+  public void shiftLow() {
     shifter.set(Value.kForward);
   }
 
-  public void shiftHigh(){
+  public void shiftHigh() {
     shifter.set(Value.kReverse);
   }
 
@@ -83,6 +83,10 @@ public class Chassis extends Subsystem {
     return leftEncoder.get();
   }
 
+  public int getRightEncoder() {
+    return rightEncoder.get();
+  }
+
   public double getLeftEncoderRate() {
     return leftEncoder.getRate();
   }
@@ -91,16 +95,13 @@ public class Chassis extends Subsystem {
     return rightEncoder.getRate();
   }
 
-  public int getRightEncoder() {
-    return rightEncoder.get();
-  }
 
   public double getAverageLeftVoltage() {
-    return (leftMaster.getMotorOutputVoltage() + leftSlaveA.getMotorOutputVoltage()) / 3;
+    return (leftMaster.getMotorOutputVoltage() + leftSlaveA.getMotorOutputVoltage() + leftSlaveB.getMotorOutputVoltage()) / 3;
   }
 
   public double getAverageRightVoltage() {
-    return (rightMaster.getMotorOutputVoltage() + rightSlaveA.getMotorOutputVoltage()) / 2;
+    return (rightMaster.getMotorOutputVoltage() + rightSlaveA.getMotorOutputVoltage() + rightSlaveB.getMotorOutputVoltage()) / 3;
   }
 
   public double getHeading() {

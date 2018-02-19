@@ -31,6 +31,19 @@ public class RobotMap {
       public static final int SHIFTER_A = 2;
       public static final int SHIFTER_B = 1;
     }
+
+    public static class Constants {
+
+      public static final double TRACKWIDTH = 0.5;
+      public static final double PROPORTIONAL = 0.5;
+      public static final double DERIVATIVE = 0.5;
+      public static final double VELOCITY = 0.5;
+      public static final double ACCELERATION = 0.5;
+      public static final int TICKS_PER_REV = 0;
+      public static final double WHEEL_DIAMETER = 0.3;
+      public static final double TURN_PROPORTIONAL = 0.4;
+      public static final double VELOCITY_INTERCEPT = 0.03;
+    }
   }
 
   public static class Elevator {
@@ -51,10 +64,11 @@ public class RobotMap {
     }
 
     public static class Constants {
-//TODO: find actual setpoints
+
+      //TODO: find actual setpoints
       public static int SCALE_HIGH = 10;
       public static int SCALE_LOW = 8;
-      public static int SCALE_BALLANCED = 9;
+      public static int SCALE_BALANCED = 9;
       public static int SWITCH = 3;
       public static int FLOOR = 0;
     }

@@ -7,6 +7,7 @@ import com.ctre.phoenix.motorcontrol.StatusFrameEnhanced;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.team2915.SER_CHUNKY.RobotMap.Elevator.Motors;
 import com.team2915.SER_CHUNKY.RobotMap.Elevator.Sensors;
+import com.team2915.SER_CHUNKY.commands.elevator.DriveManual;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -39,7 +40,7 @@ public class Elevator extends Subsystem {
 
   @Override
   protected void initDefaultCommand() {
-
+    setDefaultCommand(new DriveManual());
   }
 
 

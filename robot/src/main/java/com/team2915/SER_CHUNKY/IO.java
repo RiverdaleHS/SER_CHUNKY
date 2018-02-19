@@ -8,6 +8,7 @@ public class IO {
   private Joystick copilot = new Joystick(1);
 
   //Chassis
+  //Teleop
   public double getThrottle() {
     return pilot.getRawAxis(1);
   }
@@ -23,29 +24,39 @@ public class IO {
   public boolean getShiftLow() {
     return pilot.getRawButton(5);
   }
+  //Characterize
+  public boolean getCharacterizeAddPower(){
+    return copilot.getRawButton(4);
+  }
+  public boolean getCharacterizeLowerPower(){
+    return copilot.getRawButton(5);
+  }
+  public boolean getCharacterizeLog(){
+    return copilot.getRawButton(6);
+  }
 
   //Elevator
   public double getElevatorThrottle() {
     return copilot.getRawAxis(0);//TODO: Test
   }
 
-  public boolean getELevatorSetpointScaleHigh() {
+  public boolean getElevatorSetpointScaleHigh() {
     return copilot.getRawButton(1);
   }
 
-  public boolean getELevatorSetpointScaleBallanced() {
+  public boolean getElevatorSetpointScaleBalanced() {
     return copilot.getRawButton(1);
   }
 
-  public boolean getELevatorSetpointScaleLow() {
+  public boolean getElevatorSetpointScaleLow() {
     return copilot.getRawButton(1);
   }
 
-  public boolean getELevatorSetpointSwitch() {
+  public boolean getElevatorSetpointSwitch() {
     return copilot.getRawButton(1);
   }
 
-  public boolean getELevatorSetpointFloor() {
+  public boolean getElevatorSetpointFloor() {
     return copilot.getRawButton(1);
   }
 

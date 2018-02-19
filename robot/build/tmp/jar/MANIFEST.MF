@@ -1,4 +1,4 @@
 Manifest-Version: 1.0
-Robot-Class: com.team2915.POWER_UP.Robot
+Robot-Class: com.team2915.SER_CHUNKY.Robot
 Main-Class: edu.wpi.first.wpilibj.RobotBase
 

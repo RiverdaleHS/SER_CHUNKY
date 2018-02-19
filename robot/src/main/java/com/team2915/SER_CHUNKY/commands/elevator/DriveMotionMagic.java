@@ -19,15 +19,15 @@ public class DriveMotionMagic extends Command {
     if (Robot.elevator.isUp() || Robot.elevator.isDown()) {
       Robot.elevator.setSpeed(0);
     } else {
-      if (Robot.io.getELevatorSetpointScaleHigh()) {
+      if (Robot.io.getElevatorSetpointScaleHigh()) {
         Robot.elevator.setMotionMagicSetpoint(Constants.SCALE_HIGH);
-      } else if (Robot.io.getELevatorSetpointScaleLow()) {
+      } else if (Robot.io.getElevatorSetpointScaleLow()) {
         Robot.elevator.setMotionMagicSetpoint(Constants.SCALE_LOW);
-      } else if (Robot.io.getELevatorSetpointScaleBallanced()) {
-        Robot.elevator.setMotionMagicSetpoint(Constants.SCALE_BALLANCED);
-      } else if (Robot.io.getELevatorSetpointSwitch()) {
+      } else if (Robot.io.getElevatorSetpointScaleBalanced()) {
+        Robot.elevator.setMotionMagicSetpoint(Constants.SCALE_BALANCED);
+      } else if (Robot.io.getElevatorSetpointSwitch()) {
         Robot.elevator.setMotionMagicSetpoint(Constants.SWITCH);
-      } else if (Robot.io.getELevatorSetpointFloor()) {
+      } else if (Robot.io.getElevatorSetpointFloor()) {
         Robot.elevator.setMotionMagicSetpoint(Constants.FLOOR);
       }
     }
