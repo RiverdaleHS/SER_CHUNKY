@@ -1,7 +1,7 @@
 package com.team2915.SER_CHUNKY;
 
-
 import edu.wpi.first.wpilibj.SPI;
+
 
 public class RobotMap {
 
@@ -54,7 +54,7 @@ public class RobotMap {
         }
         public static class Solenoids{
             public static final int SHIFTER_A = 0;
-            public static final int SHIFTER_A = 3;
+            public static final int SHIFTER_B = 3;
         }
     }
 

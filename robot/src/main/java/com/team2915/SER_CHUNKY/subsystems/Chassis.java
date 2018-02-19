@@ -1,8 +1,13 @@
 package com.team2915.SER_CHUNKY.subsystems;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.kauailabs.navx.frc.AHRS;
-import com.team2915.POWER_UP.RobotMap;
+
+
+import com.team2915.SER_CHUNKY.RobotMap;
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class Chassis extends Subsystem {
@@ -10,42 +15,40 @@ public class Chassis extends Subsystem {
 }
     private AHRS navx = new AHRS(RobotMap.Chassis.Sensors.AHRS_PORT);
 
-    private TalonSRX leftMaster = new TalonSRX(RobotMap.ChassisMap.leftMaster);
-    private TalonSRX leftSlaveA = new TalonSRX(RobotMap.ChassisMap.leftSlave);
+    private TalonSRX leftMaster = new TalonSRX(RobotMap.Chassis.Motors.LEFT_MASTER);
+    private TalonSRX leftSlaveA = new TalonSRX(RobotMap.Chassis.Motors.LEFT_SLAVEA);
+    private TalonSRX leftSlaveB = new TalonSRX(RobotMap.Chassis.Motors.LEFT_SLAVEB);
 
-    private TalonSRX rightMaster = new TalonSRX(RobotMap.ChassisMap.rightMaster);
-    private TalonSRX rightSlaveA = new TalonSRX(RobotMap.ChassisMap.rightSlave);
+    private TalonSRX rightMaster = new TalonSRX(RobotMap.Chassis.Motors.RIGHT_MASTER);
+    private TalonSRX rightSlaveA = new TalonSRX(RobotMap.Chassis.Motors.RIGHT_SLAVEA);
+    private TalonSRX rightSlaveB = new TalonSRX(RobotMap.Chassis.Motors.RIGHT_SLAVEB);
 
-    private Encoder leftEncoder = new Encoder(RobotMap.ChassisMap.leftEncoderTop, RobotMap.ChassisMap.leftEncoderBottom);
-    private Encoder rightEncoder = new Encoder(RobotMap.ChassisMap.rightEncoderTop, RobotMap.ChassisMap.rightEncoderBottom);
+    private Encoder leftEncoder = new Encoder(RobotMap.Chassis.Sensors.LEFT_ENCODER_A, RobotMap.Chassis.Sensors.LEFT_ENCODER_B);
+    private Encoder rightEncoder = new Encoder(RobotMap.Chassis.Sensors.RIGHT_ENCODER_A, RobotMap.Chassis.Sensors.RIGHT_ENCODER_B);
 
     public Chassis(){
-        //Configure Masters
-
         rightMaster.setNeutralMode(NeutralMode.Brake);
+        rightSlaveA.setNeutralMode(NeutralMode.Brake);
+        rightSlaveB.setNeutralMode(NeutralMode.Brake);
+        rightSlaveA.set(ControlMode.Follower, rightMaster.getDeviceID());
+        rightSlaveB.set(ControlMode.Follower, rightMaster.getDeviceID());
+        rightMaster.setInverted(false);
+        rightSlaveA.setInverted(false);
+        rightSlaveB.setInverted(false);
 
         leftMaster.setNeutralMode(NeutralMode.Brake);
-        //Configure left slaves
-        leftSlaveA.set(ControlMode.Follower, leftMaster.getDeviceID());
-
         leftSlaveA.setNeutralMode(NeutralMode.Brake);
+        leftSlaveB.setNeutralMode(NeutralMode.Brake);
+        leftSlaveA.set(ControlMode.Follower, leftMaster.getDeviceID());
+        leftSlaveB.set(ControlMode.Follower, leftMaster.getDeviceID());
         leftMaster.setInverted(true);
         leftSlaveA.setInverted(true);
+        leftSlaveB.setInverted(true);
 
-
-        //Configure right slaves
-        rightSlaveA.set(ControlMode.Follower, rightMaster.getDeviceID());
-
-        rightSlaveA.setNeutralMode(NeutralMode.Brake);
-
-
-
-        //Configure Sensors
-        //leftEncoder.reset();
-        //rightEncoder.reset();
+        leftEncoder.reset();
+        rightEncoder.reset();
         navx.reset();
     }
-
 
     @Override
     protected void initDefaultCommand() {
@@ -99,3 +102,4 @@ public class Chassis extends Subsystem {
         //TODO: This is in here for collision detection
 
     }
+}
