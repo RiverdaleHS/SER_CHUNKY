@@ -8,6 +8,8 @@ import java.util.Date;
 
 public class Logger {
 
+  //TODO: add scripts for pulling these off.  FILE THAT LISTS FILES FOR GRABBER TO PULL?
+
   public static void logTXT(String path, String message) {
     System.out.println(message);
     try {

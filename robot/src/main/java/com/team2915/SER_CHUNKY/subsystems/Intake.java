@@ -3,6 +3,10 @@ package com.team2915.SER_CHUNKY.subsystems;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.team2915.SER_CHUNKY.RobotMap;
+import com.team2915.SER_CHUNKY.RobotMap.Intake.Solenoids;
+import com.team2915.SER_CHUNKY.commands.intake.HoldCube;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.Ultrasonic;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -11,6 +15,8 @@ public class Intake extends Subsystem {
 
   private Ultrasonic cubeUltrasonic = new Ultrasonic(RobotMap.Intake.Sensors.CUBE_IN,
       RobotMap.Intake.Sensors.CUBE_OUT);
+
+  DoubleSolenoid frontClamp = new DoubleSolenoid(Solenoids.SHIFTER_A, Solenoids.SHIFTER_B);
 
   private TalonSRX leftRear = new TalonSRX(RobotMap.Intake.Motors.LEFT_REAR);
   private TalonSRX rightRear = new TalonSRX(RobotMap.Intake.Motors.RIGHT_REAR);
@@ -24,11 +30,20 @@ public class Intake extends Subsystem {
 
 
   protected void initDefaultCommand() {
-    setDefaultCommand();
+    setDefaultCommand(new HoldCube());
   }
 
   public double getCubeDistanceInches() {
     return cubeUltrasonic.getRangeInches();
+  }
+
+
+  public void setOpen() {
+    frontClamp.set(Value.kForward);
+  }
+
+  public void setClosed() {
+    frontClamp.set(Value.kReverse);
   }
 
   public void setLeftRear(double speed) {

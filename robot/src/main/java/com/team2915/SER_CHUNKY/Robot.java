@@ -1,6 +1,5 @@
 package com.team2915.SER_CHUNKY;
 
-
 import com.team2915.SER_CHUNKY.subsystems.Chassis;
 import com.team2915.SER_CHUNKY.subsystems.Climber;
 import com.team2915.SER_CHUNKY.subsystems.Elevator;
@@ -16,15 +15,16 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class Robot extends IterativeRobot {
 
-  Chassis chassis = new Chassis();
-  Climber climber = new Climber();
-  Elevator elevator = new Elevator();
-  Intake intake = new Intake();
+  public static Chassis chassis = new Chassis();
+  public static Climber climber = new Climber();
+  public static Elevator elevator = new Elevator();
+  public static Intake intake = new Intake();
 
 
   @Override
   public void robotInit() {
     super.robotInit();
+    //Add our subsystems to SmartDashboard so that we can see what commands are running on them
     SmartDashboard.putData(chassis);
     SmartDashboard.putData(climber);
     SmartDashboard.putData(elevator);
