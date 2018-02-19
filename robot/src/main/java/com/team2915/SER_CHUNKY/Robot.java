@@ -4,13 +4,18 @@ package com.team2915.SER_CHUNKY;
 import com.team2915.SER_CHUNKY.subsystems.Chassis;
 import com.team2915.SER_CHUNKY.subsystems.Climber;
 import com.team2915.SER_CHUNKY.subsystems.Elevator;
+import com.team2915.SER_CHUNKY.subsystems.Intake;
 import edu.wpi.first.wpilibj.IterativeRobot;
-import edu.wpi.first.wpilibj.command.Scheduler;
 
 /**
  * Created by Henry on 5/2/17.
  */
 public class Robot extends IterativeRobot {
+
+    Chassis chassis = new Chassis();
+    Climber climber = new Climber();
+    Elevator elevator = new Elevator();
+    Intake intake = new Intake();
 
     @Override
     public void robotInit() {
