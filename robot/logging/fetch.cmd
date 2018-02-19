@@ -1,0 +1,1 @@
+scp admin@roborio-2915-frc.local:/home/lvuser/LOGS.csv
