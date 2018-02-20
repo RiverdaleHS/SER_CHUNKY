@@ -38,7 +38,6 @@ public class Robot extends IterativeRobot {
     SmartDashboard.putData(intake);
 
     //Add auto chooser
-
     positionChooser.addDefault("Do Nothing", FieldPosition.DO_NOTHING);
     positionChooser.addDefault("Left Scale", FieldPosition.LEFT_SCALE);
     positionChooser.addDefault("Left Switch", FieldPosition.LEFT_SWITCH);
@@ -47,6 +46,7 @@ public class Robot extends IterativeRobot {
     positionChooser.addDefault("Right Scale", FieldPosition.RIGHT_SCALE);
     positionChooser.addDefault("Line Cross", FieldPosition.LINE_CROSS);
     SmartDashboard.putData(positionChooser);
+    SmartDashboard.putNumber("Auto Delay", 0);
 
   }
 
@@ -90,7 +90,7 @@ public class Robot extends IterativeRobot {
       scalePosition = FieldPosition.RIGHT_SCALE;
     }
 
-    autoCommand = new SmartAuto(robotPosition, switchPosition, scalePosition, 0);
+    autoCommand = new SmartAuto(robotPosition, switchPosition, scalePosition, SmartDashboard.getNumber("Auto Delay", 0));
     Scheduler.getInstance().add(autoCommand);
 
   }

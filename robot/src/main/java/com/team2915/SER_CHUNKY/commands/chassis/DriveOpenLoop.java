@@ -32,4 +32,10 @@ public class DriveOpenLoop extends Command {
   protected boolean isFinished() {
     return false;
   }
+
+  @Override
+  protected void end() {
+    super.end();
+    Robot.chassis.setSpeed(0,0);
+  }
 }

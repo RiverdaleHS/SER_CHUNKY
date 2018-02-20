@@ -2,6 +2,7 @@ package com.team2915.SER_CHUNKY.autoroutines;
 
 
 import com.team2915.SER_CHUNKY.commands.Wait;
+import com.team2915.SER_CHUNKY.commands.elevator.DriveTimeBased;
 import com.team2915.SER_CHUNKY.commands.intake.InitialAutoEjectCube;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
@@ -15,15 +16,22 @@ public class SmartAuto extends CommandGroup {
     if (robotPosition == FieldPosition.LEFT_SWITCH || robotPosition == FieldPosition.RIGHT_SWITCH) {
       addSequential(new DriveToSwitch());
       if (robotPosition == switchPosition) {
+        //TODO: add time based elevator raise
         addSequential(new InitialAutoEjectCube());
       }
     }
     //Scale
     if (robotPosition == FieldPosition.LEFT_SCALE || robotPosition == FieldPosition.RIGHT_SCALE) {
       addSequential(new DriveToScale());
-      if (robotPosition == switchPosition) {
+      if (robotPosition == scalePosition) {
+        addSequential(new DriveTimeBased(0.4, 0.5));
         addSequential(new InitialAutoEjectCube());
       }
+    }
+
+    if (robotPosition == FieldPosition.LINE_CROSS) {
+      addSequential(new DriveTimeBased(0.4, 0.5));
+      addSequential(new DriveToAutoLine());
     }
   }
 

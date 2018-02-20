@@ -40,4 +40,9 @@ public class Characterize extends Command {
     return false;
   }
 
+  @Override
+  protected void end() {
+    super.end();
+    Robot.chassis.setSpeed(0, 0);
+  }
 }

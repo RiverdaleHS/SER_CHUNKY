@@ -39,12 +39,12 @@ public class ExecuteTrajectory extends Command {
       rightFollower = new EncoderFollower(tankModifier.getRightTrajectory());
       leftFollower.configurePIDVA(Constants.PROPORTIONAL, 0.0,
           Constants.DERIVATIVE,
-          Constants.VELOCITY,
-          Constants.ACCELERATION);
+          Constants.VELOCITY_FEEDFORWARD,
+          Constants.ACCELERATION_FEEDFORWARD);
       rightFollower.configurePIDVA(Constants.PROPORTIONAL, 0.0,
           Constants.DERIVATIVE,
-          Constants.VELOCITY,
-          Constants.ACCELERATION);
+          Constants.VELOCITY_FEEDFORWARD,
+          Constants.ACCELERATION_FEEDFORWARD);
 
       leftFollower.configureEncoder(Robot.chassis.getLeftEncoder(),
           Constants.TICKS_PER_REV,
@@ -95,5 +95,11 @@ public class ExecuteTrajectory extends Command {
       return true;
     }
     return false;
+  }
+
+  @Override
+  protected void end() {
+    super.end();
+    Robot.chassis.setSpeed(0, 0);
   }
 }
