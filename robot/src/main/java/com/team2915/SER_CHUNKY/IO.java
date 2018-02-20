@@ -36,40 +36,40 @@ public class IO {
     return pilot.getRawButton(5);
   }
   //Characterize
-  public boolean getCharacterizeAddPower(){
-    return copilot.getRawButton(4);
-  }
-  public boolean getCharacterizeLowerPower(){
-    return copilot.getRawButton(5);
-  }
-  public boolean getCharacterizeLog(){
-    return copilot.getRawButton(6);
-  }
+//  public boolean getCharacterizeAddPower(){
+//    return copilot.getRawButton(4);
+//  }
+//  public boolean getCharacterizeLowerPower(){
+//    return copilot.getRawButton(5);
+//  }
+//  public boolean getCharacterizeLog(){
+//    return copilot.getRawButton(6);
+//  }
 
   //Elevator
   public double getElevatorThrottle() {
     return copilot.getRawAxis(0);//TODO: Test
   }
 
-  public boolean getElevatorSetpointScaleHigh() {
-    return copilot.getRawButton(1);
-  }
-
-  public boolean getElevatorSetpointScaleBalanced() {
-    return copilot.getRawButton(1);
-  }
-
-  public boolean getElevatorSetpointScaleLow() {
-    return copilot.getRawButton(1);
-  }
-
-  public boolean getElevatorSetpointSwitch() {
-    return copilot.getRawButton(1);
-  }
-
-  public boolean getElevatorSetpointFloor() {
-    return copilot.getRawButton(1);
-  }
+//  public boolean getElevatorSetpointScaleHigh() {
+//    return copilot.getRawButton(1);
+//  }
+//
+//  public boolean getElevatorSetpointScaleBalanced() {
+//    return copilot.getRawButton(1);
+//  }
+//
+//  public boolean getElevatorSetpointScaleLow() {
+//    return copilot.getRawButton(1);
+//  }
+//
+//  public boolean getElevatorSetpointSwitch() {
+//    return copilot.getRawButton(1);
+//  }
+//
+//  public boolean getElevatorSetpointFloor() {
+//    return copilot.getRawButton(1);
+//  }
 
 
   //Climber

@@ -19,25 +19,25 @@ public class Characterize extends Command {
   @Override
   protected void execute() {
     super.execute();
-    if (Robot.io.getCharacterizeAddPower()) {
-      speed += 0.05;
-    }
-    if (Robot.io.getCharacterizeLowerPower()) {
-      speed -= 0.05;
-    }
-    if (Robot.io.getCharacterizeLog()) {
-      Logger.logCSV("MotionProfileCharacterization.csv",
-          Robot.chassis.getAverageLeftVoltage() + " , " + Robot.chassis.getAverageRightVoltage()
-              + " , " + Robot.chassis.getLeftEncoderRate() + " , " + Robot.chassis
-              .getRightEncoderRate() + " , " + new Date());
-    }
-
-    Robot.chassis.setSpeed(speed, speed);
+//    if (Robot.io.getCharacterizeAddPower()) {
+//      speed += 0.05;
+//    }
+//    if (Robot.io.getCharacterizeLowerPower()) {
+//      speed -= 0.05;
+//    }
+//    if (Robot.io.getCharacterizeLog()) {
+//      Logger.logCSV("MotionProfileCharacterization.csv",
+//          Robot.chassis.getAverageLeftVoltage() + " , " + Robot.chassis.getAverageRightVoltage()
+//              + " , " + Robot.chassis.getLeftEncoderRate() + " , " + Robot.chassis
+//              .getRightEncoderRate() + " , " + new Date());
+//    }
+//
+//    Robot.chassis.setSpeed(speed, speed);
   }
 
   @Override
   protected boolean isFinished() {
-    return false;
+    return true;
   }
 
   @Override
