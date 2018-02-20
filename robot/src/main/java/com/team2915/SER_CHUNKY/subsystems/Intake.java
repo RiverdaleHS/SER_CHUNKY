@@ -14,7 +14,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class Intake extends Subsystem {
 
   private Ultrasonic cubeUltrasonic = new Ultrasonic(RobotMap.Intake.Sensors.CUBE_IN,
-      RobotMap.Intake.Sensors.CUBE_OUT);
+      RobotMap.Intake.Sensors.CUBE_OUT);//should be correct
 
   DoubleSolenoid frontClamp = new DoubleSolenoid(Solenoids.SHIFTER_A, Solenoids.SHIFTER_B);
 
@@ -25,7 +25,12 @@ public class Intake extends Subsystem {
 
 
   public Intake() {
-
+    //INVERT RIGHT
+    rightRear.setInverted(false);
+    rightFront.setInverted(false);
+    leftRear.setInverted(true);
+    leftFront.setInverted(true);
+    cubeUltrasonic.setAutomaticMode(true);//TODO: learn more about this
   }
 
 

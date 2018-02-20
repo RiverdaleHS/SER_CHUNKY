@@ -25,7 +25,7 @@ public class CollectCube extends Command {
 
   @Override
   protected boolean isFinished() {
-    if (Robot.intake.getCubeDistanceInches() < 2) {
+    if (Robot.intake.getCubeDistanceInches() < 1) {
       return true;
     }
     return false;

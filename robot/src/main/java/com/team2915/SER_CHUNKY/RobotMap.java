@@ -53,11 +53,10 @@ public class RobotMap {
 
     public static class Sensors {
 
-      public static final int LIMIT_TOP_A = 3;
-      public static final int LIMIT_TOP_B = 4;
-      public static final int LIMIT_BOTTOM_A = 5;
+      public static final int LIMIT_TOP_A = 8;
+      public static final int LIMIT_TOP_B = 7;
+      public static final int LIMIT_BOTTOM_A = 9;
       public static final int LIMIT_BOTTOM_B = 6;
-
     }
 
     public static class Motors {
@@ -87,8 +86,8 @@ public class RobotMap {
 
     public static class Motors {
 
-      public static final int LEFT_REAR = 0;//TODO: wrong
-      public static final int RIGHT_REAR = 1;//TODO: wrong
+      public static final int LEFT_REAR = 40;
+      public static final int RIGHT_REAR = 41;
       public static final int LEFT_FRONT = 1;
       public static final int RIGHT_FRONT = 2;
     }

@@ -18,12 +18,14 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class Robot extends IterativeRobot {
 
-  public static IO io = new IO();
+
 
   public static Chassis chassis = new Chassis();
   public static Climber climber = new Climber();
   public static Elevator elevator = new Elevator();
   public static Intake intake = new Intake();
+
+  public static IO io = new IO();
 
   SendableChooser positionChooser = new SendableChooser();
   CommandGroup autoCommand;
@@ -60,14 +62,16 @@ public class Robot extends IterativeRobot {
   @Override
   public void teleopInit() {
     super.teleopInit();
-    autoCommand.cancel();
+    if (autoCommand != null){
+      autoCommand.cancel();
+    }
   }
 
   @Override
   public void teleopPeriodic() {
     super.teleopPeriodic();
     Scheduler.getInstance().run();
-
+    SmartDashboard.putNumber("Cube Ultrasonic", intake.getCubeDistanceInches());
   }
 
   @Override

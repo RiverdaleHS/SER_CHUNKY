@@ -48,7 +48,7 @@ public class IO {
 
   //Elevator
   public double getElevatorThrottle() {
-    return copilot.getRawAxis(0);//TODO: Test
+    return -copilot.getRawAxis(1);//TODO: Test
   }
 
 //  public boolean getElevatorSetpointScaleHigh() {
@@ -74,7 +74,7 @@ public class IO {
 
   //Climber
   public boolean getClimb() {
-    return copilot.getRawButton(0);//TODO: Test
+    return copilot.getRawButton(5);//TODO: Test
   }
 
 }
