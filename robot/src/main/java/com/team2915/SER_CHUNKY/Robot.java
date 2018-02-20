@@ -1,13 +1,16 @@
 package com.team2915.SER_CHUNKY;
 
+import com.team2915.SER_CHUNKY.autoroutines.SmartAuto;
+import com.team2915.SER_CHUNKY.autoroutines.SmartAuto.FieldPosition;
 import com.team2915.SER_CHUNKY.subsystems.Chassis;
 import com.team2915.SER_CHUNKY.subsystems.Climber;
 import com.team2915.SER_CHUNKY.subsystems.Elevator;
 import com.team2915.SER_CHUNKY.subsystems.Intake;
-import com.team2915.SER_CHUNKY.util.Logger;
 import edu.wpi.first.wpilibj.DriverStation;
-import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.command.CommandGroup;
+import edu.wpi.first.wpilibj.command.Scheduler;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
@@ -22,6 +25,8 @@ public class Robot extends IterativeRobot {
   public static Elevator elevator = new Elevator();
   public static Intake intake = new Intake();
 
+  SendableChooser positionChooser = new SendableChooser();
+  CommandGroup autoCommand;
 
   @Override
   public void robotInit() {
@@ -32,6 +37,16 @@ public class Robot extends IterativeRobot {
     SmartDashboard.putData(elevator);
     SmartDashboard.putData(intake);
 
+    //Add auto chooser
+
+    positionChooser.addDefault("Do Nothing", FieldPosition.DO_NOTHING);
+    positionChooser.addDefault("Left Scale", FieldPosition.LEFT_SCALE);
+    positionChooser.addDefault("Left Switch", FieldPosition.LEFT_SWITCH);
+    positionChooser.addDefault("Center Switch", FieldPosition.CENTER_SWITCH);
+    positionChooser.addDefault("Right Switch", FieldPosition.RIGHT_SWITCH);
+    positionChooser.addDefault("Right Scale", FieldPosition.RIGHT_SCALE);
+    positionChooser.addDefault("Line Cross", FieldPosition.LINE_CROSS);
+    SmartDashboard.putData(positionChooser);
 
   }
 
@@ -45,36 +60,45 @@ public class Robot extends IterativeRobot {
   @Override
   public void teleopInit() {
     super.teleopInit();
-
+    autoCommand.cancel();
   }
 
   @Override
   public void teleopPeriodic() {
     super.teleopPeriodic();
-
+    Scheduler.getInstance().run();
 
   }
 
   @Override
   public void autonomousInit() {
     super.autonomousInit();
-    Alliance alliance = DriverStation.getInstance().getAlliance();
-    int allianceStation = (int) SmartDashboard.getNumber("Alliance Station", -1);
-    String gamePattern = DriverStation.getInstance().getGameSpecificMessage();
-    try {
-      if (gamePattern.charAt(0) == 'l') {
+    String gameSpecificMessage = DriverStation.getInstance().getGameSpecificMessage();
 
-      }
-    } catch (Exception e) {
-      Logger.logTXT("auto", "Could not read game pattern at index 0, " + e.getMessage());
+    FieldPosition robotPosition = (FieldPosition) positionChooser.getSelected();
+    FieldPosition switchPosition;
+    if (gameSpecificMessage.charAt(0) == 'L') {
+      switchPosition = FieldPosition.LEFT_SWITCH;
+    } else {
+      switchPosition = FieldPosition.RIGHT_SWITCH;
     }
+
+    FieldPosition scalePosition;
+    if (gameSpecificMessage.charAt(1) == 'L') {
+      scalePosition = FieldPosition.LEFT_SCALE;
+    } else {
+      scalePosition = FieldPosition.RIGHT_SCALE;
+    }
+
+    autoCommand = new SmartAuto(robotPosition, switchPosition, scalePosition, 0);
+    Scheduler.getInstance().add(autoCommand);
 
   }
 
   @Override
   public void autonomousPeriodic() {
     super.autonomousPeriodic();
-
+    Scheduler.getInstance().run(); //TODO: is this really needed?
 
   }
 }
