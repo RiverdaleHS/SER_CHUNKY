@@ -34,15 +34,15 @@ public class RobotMap {
 
     public static class Constants {
 
-      public static final double TRACKWIDTH = 0.5;
-      public static final double PROPORTIONAL = 0.5;
-      public static final double DERIVATIVE = 0.5;
-      public static final double VELOCITY_FEEDFORWARD = 0.5;
-      public static final double ACCELERATION_FEEDFORWARD = 0.5;
-      public static final int TICKS_PER_REV = 0;
+      public static final double TRACKWIDTH = 0.635;
+      public static final double PROPORTIONAL = 0.8;
+      public static final double DERIVATIVE = 0;
+      public static final double VELOCITY_FEEDFORWARD = 0.125;
+      public static final double ACCELERATION_FEEDFORWARD = 0.1;
+      public static final int TICKS_PER_REV = 1920;
       public static final double WHEEL_DIAMETER = 0.3;
       public static final double TURN_PROPORTIONAL = 0.4;
-      public static final double VELOCITY_INTERCEPT = 0.03;
+      public static final double VELOCITY_INTERCEPT = 0.05;
       public static final double MAX_PATH_VELOCITY = 1;
       public static final double MAX_PATH_ACCELERATION = 3;
       public static final double MAX_PATH_JERK = 60;
