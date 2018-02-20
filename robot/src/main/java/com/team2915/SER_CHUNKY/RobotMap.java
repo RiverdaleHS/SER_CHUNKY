@@ -87,8 +87,8 @@ public class RobotMap {
 
     public static class Motors {
 
-      public static final int LEFT_REAR = 0;
-      public static final int RIGHT_REAR = 1;
+      public static final int LEFT_REAR = 0;//TODO: wrong
+      public static final int RIGHT_REAR = 1;//TODO: wrong
       public static final int LEFT_FRONT = 1;
       public static final int RIGHT_FRONT = 2;
     }
