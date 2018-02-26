@@ -28,6 +28,7 @@ public class Robot extends IterativeRobot {
   public static IO io = new IO();
 
   SendableChooser positionChooser = new SendableChooser();
+  SendableChooser autoChooser = new SendableChooser();
   CommandGroup autoCommand;
 
   @Override

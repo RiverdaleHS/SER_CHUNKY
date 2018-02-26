@@ -9,19 +9,18 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class SmartAuto extends CommandGroup {
 
   public SmartAuto(FieldPosition robotPosition, FieldPosition switchPosition,
-      FieldPosition scalePosition, double timeDelay) {
+      FieldPosition scalePosition, AutoType autoType, double timeDelay) {
 
     addSequential(new Wait(timeDelay));
-    //Switch
-    if (robotPosition == FieldPosition.LEFT_SWITCH || robotPosition == FieldPosition.RIGHT_SWITCH) {
+    if ((robotPosition == FieldPosition.LEFT_SWITCH || robotPosition == FieldPosition.RIGHT_SWITCH) && autoType == AutoType.PLACE_ONE) {
       addSequential(new DriveToSwitch());
       if (robotPosition == switchPosition) {
-        //TODO: add time based elevator raise
+        addSequential(new DriveTimeBased(0.4, 0.5));
         addSequential(new InitialAutoEjectCube());
       }
     }
     //Scale
-    if (robotPosition == FieldPosition.LEFT_SCALE || robotPosition == FieldPosition.RIGHT_SCALE) {
+    if ((robotPosition == FieldPosition.LEFT_SCALE || robotPosition == FieldPosition.RIGHT_SCALE) && autoType == AutoType.PLACE_ONE) {
       addSequential(new DriveToScale());
       if (robotPosition == scalePosition) {
         addSequential(new DriveTimeBased(0.4, 0.5));
@@ -29,10 +28,15 @@ public class SmartAuto extends CommandGroup {
       }
     }
 
-    if (robotPosition == FieldPosition.LINE_CROSS) {
+    if (autoType == AutoType.LINE_CROSS) {
       addSequential(new DriveTimeBased(0.4, 0.5));
       addSequential(new DriveToAutoLine());
     }
+
+    if (autoType == AutoType.PLACE_TWO && robotPosition == FieldPosition.CENTER_SWITCH){
+      addSequential(new );
+    }
+
   }
 
   public enum FieldPosition {
@@ -41,6 +45,11 @@ public class SmartAuto extends CommandGroup {
     CENTER_SWITCH,
     RIGHT_SCALE,
     RIGHT_SWITCH,
+  }
+
+  public enum AutoType {
+    PLACE_ONE,
+    PLACE_TWO,
     LINE_CROSS,
     DO_NOTHING
   }
