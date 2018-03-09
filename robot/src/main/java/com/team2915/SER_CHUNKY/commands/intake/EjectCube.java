@@ -12,12 +12,13 @@ public class EjectCube extends Command {
   @Override
   protected void execute() {
     super.execute();
-    if (Robot.intake.getCubeDistanceInches() < 3) {
+    if (Robot.intake.getCubeDistanceInches() < 2) {
       Robot.intake.setRear(-0.8);
       Robot.intake.setFront(-0.8);
     } else {
       Robot.intake.setFront(-0.4);
       Robot.intake.setRear(-0.4);
+      Robot.intake.setOpen();
     }
   }
 

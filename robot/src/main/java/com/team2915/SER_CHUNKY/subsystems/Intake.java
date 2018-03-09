@@ -31,6 +31,7 @@ public class Intake extends Subsystem {
     leftRear.setInverted(true);
     leftFront.setInverted(true);
     cubeUltrasonic.setAutomaticMode(true);//TODO: learn more about this
+    //TODO: examine starting solenoid value
   }
 
 
@@ -44,11 +45,11 @@ public class Intake extends Subsystem {
 
 
   public void setOpen() {
-    frontClamp.set(Value.kForward);
+    frontClamp.set(Value.kReverse);
   }
 
   public void setClosed() {
-    frontClamp.set(Value.kReverse);
+    frontClamp.set(Value.kForward);
   }
 
   public void setLeftRear(double speed) {

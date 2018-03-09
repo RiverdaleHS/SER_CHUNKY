@@ -1,11 +1,16 @@
 package com.team2915.SER_CHUNKY;
 
 import com.team2915.SER_CHUNKY.autoroutines.SmartAuto;
+import com.team2915.SER_CHUNKY.autoroutines.SmartAuto.AutoType;
 import com.team2915.SER_CHUNKY.autoroutines.SmartAuto.FieldPosition;
 import com.team2915.SER_CHUNKY.subsystems.Chassis;
 import com.team2915.SER_CHUNKY.subsystems.Climber;
 import com.team2915.SER_CHUNKY.subsystems.Elevator;
 import com.team2915.SER_CHUNKY.subsystems.Intake;
+import edu.wpi.cscore.CvSink;
+import edu.wpi.cscore.UsbCamera;
+import edu.wpi.cscore.VideoSink;
+import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.CommandGroup;
@@ -31,6 +36,10 @@ public class Robot extends IterativeRobot {
   SendableChooser autoChooser = new SendableChooser();
   CommandGroup autoCommand;
 
+  UsbCamera cam0;
+  CvSink cvsink0;
+  VideoSink server;
+
   @Override
   public void robotInit() {
     super.robotInit();
@@ -40,15 +49,30 @@ public class Robot extends IterativeRobot {
     SmartDashboard.putData(elevator);
     SmartDashboard.putData(intake);
 
+
+    cam0 = CameraServer.getInstance().startAutomaticCapture(0);
+    cam0.setResolution(320, 240);
+    cam0.setExposureAuto();
+    cam0.setWhiteBalanceAuto();
+    server = CameraServer.getInstance().getServer();
+    cvsink0 = new CvSink("cam0cv");
+
+    cvsink0.setSource(cam0);
+    cvsink0.setEnabled(true);
     //Add auto chooser
-    positionChooser.addDefault("Do Nothing", FieldPosition.DO_NOTHING);
+
     positionChooser.addDefault("Left Scale", FieldPosition.LEFT_SCALE);
-    positionChooser.addDefault("Left Switch", FieldPosition.LEFT_SWITCH);
-    positionChooser.addDefault("Center Switch", FieldPosition.CENTER_SWITCH);
-    positionChooser.addDefault("Right Switch", FieldPosition.RIGHT_SWITCH);
-    positionChooser.addDefault("Right Scale", FieldPosition.RIGHT_SCALE);
-    positionChooser.addDefault("Line Cross", FieldPosition.LINE_CROSS);
+    positionChooser.addObject("Left Switch", FieldPosition.LEFT_SWITCH);
+    positionChooser.addObject("Center Switch", FieldPosition.CENTER_SWITCH);
+    positionChooser.addObject("Right Switch", FieldPosition.RIGHT_SWITCH);
+    positionChooser.addObject("Right Scale", FieldPosition.RIGHT_SCALE);
+
     SmartDashboard.putData(positionChooser);
+
+    autoChooser.addDefault("Line Cross", AutoType.LINE_CROSS);
+    autoChooser.addObject("Do Nothing", AutoType.DO_NOTHING);
+    SmartDashboard.putData(autoChooser);
+
     SmartDashboard.putNumber("Auto Delay", 0);
 
   }
@@ -78,25 +102,26 @@ public class Robot extends IterativeRobot {
   @Override
   public void autonomousInit() {
     super.autonomousInit();
-//    String gameSpecificMessage = DriverStation.getInstance().getGameSpecificMessage();
-//
-//    FieldPosition robotPosition = (FieldPosition) positionChooser.getSelected();
-//    FieldPosition switchPosition;
-//    if (gameSpecificMessage.charAt(0) == 'L') {
-//      switchPosition = FieldPosition.LEFT_SWITCH;
-//    } else {
-//      switchPosition = FieldPosition.RIGHT_SWITCH;
-//    }
-//
-//    FieldPosition scalePosition;
-//    if (gameSpecificMessage.charAt(1) == 'L') {
-//      scalePosition = FieldPosition.LEFT_SCALE;
-//    } else {
-//      scalePosition = FieldPosition.RIGHT_SCALE;
-//    }
-//
-//    autoCommand = new SmartAuto(robotPosition, switchPosition, scalePosition, SmartDashboard.getNumber("Auto Delay", 0));
-//    Scheduler.getInstance().add(autoCommand);
+    String gameSpecificMessage = DriverStation.getInstance().getGameSpecificMessage();
+
+    FieldPosition robotPosition = (FieldPosition) positionChooser.getSelected();
+    AutoType autoType = (AutoType) autoChooser.getSelected();
+    FieldPosition switchPosition;
+    if (gameSpecificMessage.charAt(0) == 'L') {
+      switchPosition = FieldPosition.LEFT_SWITCH;
+    } else {
+      switchPosition = FieldPosition.RIGHT_SWITCH;
+    }
+
+    FieldPosition scalePosition;
+    if (gameSpecificMessage.charAt(1) == 'L') {
+      scalePosition = FieldPosition.LEFT_SCALE;
+    } else {
+      scalePosition = FieldPosition.RIGHT_SCALE;
+    }
+
+    autoCommand = new SmartAuto(robotPosition, switchPosition, scalePosition, autoType, SmartDashboard.getNumber("Auto Delay", 0));
+    Scheduler.getInstance().add(autoCommand);
 
   }
 

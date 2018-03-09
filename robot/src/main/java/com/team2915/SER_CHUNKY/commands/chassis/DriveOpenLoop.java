@@ -17,7 +17,7 @@ public class DriveOpenLoop extends Command {
   protected void execute() {
     super.execute();
     DriveSignal ds = cheesyDriveHelper
-        .cheesyDrive(Robot.io.getThrottle(), Robot.io.getTurn(), Robot.io.getQuickTurn());
+        .cheesyDrive(-Robot.io.getThrottle(), Robot.io.getTurn(), Robot.io.getQuickTurn());
 
     if (Robot.io.getQuickTurn() || Robot.io.getShiftLow()) {
       Robot.chassis.shiftLow();

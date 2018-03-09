@@ -12,14 +12,14 @@ public class HoldCube extends Command {
   @Override
   protected void execute() {
     super.execute();
-    Robot.intake.setClosed();
-    if (Robot.intake.getCubeDistanceInches() > 3 && Robot.intake.getCubeDistanceInches() < 10) {
-      Robot.intake.setFront(0.3);
-      Robot.intake.setRear(0.3);
-    } else {
+//    Robot.intake.setClosed();
+//    if (Robot.intake.getCubeDistanceInches() > 3 && Robot.intake.getCubeDistanceInches() < 10) {
+//      Robot.intake.setFront(0.3);
+//      Robot.intake.setRear(0.3);
+//    } else {
       Robot.intake.setFront(0);
       Robot.intake.setRear(0);
-    }
+//    }
   }
 
   @Override

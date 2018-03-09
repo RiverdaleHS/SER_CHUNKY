@@ -12,14 +12,14 @@ public class CollectCube extends Command {
   @Override
   protected void execute() {
     super.execute();
-    if (Robot.intake.getCubeDistanceInches() > 10) {
+    if (Robot.intake.getCubeDistanceInches() > 2) {
       Robot.intake.setOpen();
       Robot.intake.setFront(0.5);
       Robot.intake.setRear(0.5);
-    } else if (Robot.intake.getCubeDistanceInches() < 10) {
+    } else if (Robot.intake.getCubeDistanceInches() < 2) {
       Robot.intake.setClosed();
-      Robot.intake.setFront(0.5);
-      Robot.intake.setRear(0.5);
+      Robot.intake.setFront(0.7);
+      Robot.intake.setRear(0.7);
     }
   }
 

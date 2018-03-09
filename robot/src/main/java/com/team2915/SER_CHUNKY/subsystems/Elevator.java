@@ -27,14 +27,14 @@ public class Elevator extends Subsystem {
     right.setInverted(true);
     right.set(ControlMode.Follower, left.getDeviceID());
 
-    left.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 10);
-    left.setStatusFramePeriod(StatusFrameEnhanced.Status_13_Base_PIDF0, 10, 10);
-    left.setStatusFramePeriod(StatusFrameEnhanced.Status_10_MotionMagic, 10, 10);
-    left.configNominalOutputForward(0, 10);
-    left.configNominalOutputReverse(0, 10);
-    left.configPeakOutputForward(1, 10);
-    left.configPeakOutputReverse(-1, 10);
-    configuePIDF();
+//    left.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 10);
+//    left.setStatusFramePeriod(StatusFrameEnhanced.Status_13_Base_PIDF0, 10, 10);
+//    left.setStatusFramePeriod(StatusFrameEnhanced.Status_10_MotionMagic, 10, 10);
+//    left.configNominalOutputForward(0, 10);
+//    left.configNominalOutputReverse(0, 10);
+//    left.configPeakOutputForward(1, 10);
+//    left.configPeakOutputReverse(-1, 10);
+//    configuePIDF();
 
   }
 
