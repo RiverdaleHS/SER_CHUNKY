@@ -13,12 +13,12 @@ public class InitialAutoEjectCube extends Command {
   protected void execute() {
     super.execute();
     if (Robot.intake.getCubeDistanceInches() < 5) {
-      Robot.intake.setFront(0.4);
-      Robot.intake.setRear(0.4);
+      Robot.intake.setFront(0.8);
+      Robot.intake.setRear(0.8);
     } else {
       Robot.intake.setOpen();
-      Robot.intake.setFront(0.4);
-      Robot.intake.setRear(0.4);
+      Robot.intake.setFront(0.8);
+      Robot.intake.setRear(0.8);
     }
   }
 

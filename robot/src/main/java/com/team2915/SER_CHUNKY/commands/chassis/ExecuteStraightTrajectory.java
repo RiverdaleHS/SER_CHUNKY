@@ -9,7 +9,7 @@ import jaci.pathfinder.Trajectory;
 import jaci.pathfinder.followers.EncoderFollower;
 import jaci.pathfinder.modifiers.TankModifier;
 
-public class ExecuteTrajectory extends Command {
+public class ExecuteStraightTrajectory extends Command {
 
   Trajectory trajectory;
 
@@ -21,7 +21,7 @@ public class ExecuteTrajectory extends Command {
   Boolean hasRun = false;
 
 
-  public ExecuteTrajectory(Trajectory traj) {
+  public ExecuteStraightTrajectory(Trajectory traj) {
     requires(Robot.chassis);
     notifier = new Notifier(this::updateTracking);
     trajectory = traj;
@@ -63,13 +63,13 @@ public class ExecuteTrajectory extends Command {
   private void updateTracking() {
     double leftOutput = leftFollower.calculate(Robot.chassis.getLeftEncoder());
     double rightOutput = rightFollower.calculate(Robot.chassis.getRightEncoder());
-    double desiredHeading = Pathfinder.r2d(leftFollower.getHeading());
-    double angleDifference = Pathfinder
-        .boundHalfDegrees(desiredHeading - Robot.chassis.getHeading());
-    double turn = Constants.TURN_PROPORTIONAL
-        * angleDifference; //This is a PD loop that modifies for turning.
-    leftOutput = leftOutput - turn;
-    rightOutput = rightOutput + turn;
+//    double desiredHeading = Pathfinder.r2d(leftFollower.getHeading());
+//    double angleDifference = Pathfinder
+//        .boundHalfDegrees(desiredHeading - Robot.chassis.getHeading());
+//    double turn = Constants.TURN_PROPORTIONAL
+//        * angleDifference; //This is a PD loop that modifies for turning.
+//    leftOutput = leftOutput - turn;
+//    rightOutput = rightOutput + turn;
 
     if (leftOutput > 0) {
       leftOutput = leftOutput + Constants.VELOCITY_INTERCEPT;

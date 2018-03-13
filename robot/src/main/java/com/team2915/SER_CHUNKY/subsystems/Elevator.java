@@ -1,9 +1,7 @@
 package com.team2915.SER_CHUNKY.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
-import com.ctre.phoenix.motorcontrol.StatusFrameEnhanced;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.team2915.SER_CHUNKY.RobotMap.Elevator.Motors;
 import com.team2915.SER_CHUNKY.RobotMap.Elevator.Sensors;
@@ -13,10 +11,8 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class Elevator extends Subsystem {
 
-  private DigitalInput topA = new DigitalInput(Sensors.LIMIT_TOP_A);
-  private DigitalInput topB = new DigitalInput(Sensors.LIMIT_TOP_B);
-  private DigitalInput bottomA = new DigitalInput(Sensors.LIMIT_BOTTOM_A);
-  private DigitalInput bottomB = new DigitalInput(Sensors.LIMIT_BOTTOM_B);
+  private DigitalInput topA = new DigitalInput(Sensors.LIMIT_TOP);
+  private DigitalInput bottomA = new DigitalInput(Sensors.LIMIT_BOTTOM);
 
   private TalonSRX left = new TalonSRX(Motors.LEFT);
   private TalonSRX right = new TalonSRX(Motors.RIGHT);
@@ -45,14 +41,14 @@ public class Elevator extends Subsystem {
 
 
   public boolean isUp() {
-    if (topA.get() | topB.get()) {
+    if (topA.get()) {
       return true;
     }
     return false;
   }
 
   public boolean isDown() {
-    if (bottomA.get() | bottomB.get()) {
+    if (bottomA.get()) {
       return true;
     }
     return false;
@@ -71,12 +67,18 @@ public class Elevator extends Subsystem {
 
   }
 
-  public void zeroEncoders(){
+  public void zeroEncoders() {
     left.setSelectedSensorPosition(0, 0, 10);
   }
 
   public void setSpeed(double speed) {
-    left.set(ControlMode.PercentOutput, speed);
+    if (isUp() && speed > 0) {
+      left.set(ControlMode.PercentOutput, 0);
+    } else if (isDown() && speed < 0) {
+      left.set(ControlMode.PercentOutput, 0);
+    } else {
+      left.set(ControlMode.PercentOutput, speed);
+    }
   }
 
   public void setMotionMagicSetpoint(double setpoint) {

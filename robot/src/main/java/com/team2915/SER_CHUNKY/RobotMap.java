@@ -53,16 +53,14 @@ public class RobotMap {
 
     public static class Sensors {
 
-      public static final int LIMIT_TOP_A = 8;
-      public static final int LIMIT_TOP_B = 7;
-      public static final int LIMIT_BOTTOM_A = 9;
-      public static final int LIMIT_BOTTOM_B = 6;
+      public static final int LIMIT_TOP = 9;
+      public static final int LIMIT_BOTTOM = 8;
     }
 
     public static class Motors {
 
-      public static final int LEFT = 6;
-      public static final int RIGHT = 7;
+      public static final int LEFT = 7;
+      public static final int RIGHT = 6;
     }
 
     public static class Constants {
@@ -103,7 +101,7 @@ public class RobotMap {
 
     public static class Motors {
 
-      public static final int CLIMBER = 0;
+      public static final int CLIMBER = 3;
     }
   }
 }

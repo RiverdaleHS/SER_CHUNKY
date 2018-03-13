@@ -14,18 +14,18 @@ public class CollectCube extends Command {
     super.execute();
     if (Robot.intake.getCubeDistanceInches() > 2) {
       Robot.intake.setOpen();
-      Robot.intake.setFront(0.5);
-      Robot.intake.setRear(0.5);
+      Robot.intake.setFront(0.3);
+      Robot.intake.setRear(0.3);
     } else if (Robot.intake.getCubeDistanceInches() < 2) {
       Robot.intake.setClosed();
-      Robot.intake.setFront(0.7);
-      Robot.intake.setRear(0.7);
+      Robot.intake.setFront(1);
+      Robot.intake.setRear(1);
     }
   }
 
   @Override
   protected boolean isFinished() {
-    if (Robot.intake.getCubeDistanceInches() < 1) {
+    if (Robot.intake.getCubeDistanceInches() < 1.5) {
       return true;
     }
     return false;

@@ -14,7 +14,7 @@ public class Climb extends Command {
   protected void execute() {
     super.execute();
     if (Robot.io.getClimb()){
-      Robot.climber.setClimber(1);
+      Robot.climber.setClimber(-1);
     }else {
       Robot.climber.setClimber(0);
     }

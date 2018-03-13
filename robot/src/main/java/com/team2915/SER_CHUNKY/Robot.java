@@ -61,17 +61,18 @@ public class Robot extends IterativeRobot {
     cvsink0.setEnabled(true);
     //Add auto chooser
 
-    positionChooser.addDefault("Left Scale", FieldPosition.LEFT_SCALE);
-    positionChooser.addObject("Left Switch", FieldPosition.LEFT_SWITCH);
-    positionChooser.addObject("Center Switch", FieldPosition.CENTER_SWITCH);
-    positionChooser.addObject("Right Switch", FieldPosition.RIGHT_SWITCH);
-    positionChooser.addObject("Right Scale", FieldPosition.RIGHT_SCALE);
+    positionChooser.addDefault("Left SC", FieldPosition.LEFT_SCALE);
+    positionChooser.addObject("Left SW", FieldPosition.LEFT_SWITCH);
+    positionChooser.addObject("Center SW", FieldPosition.CENTER_SWITCH);
+    positionChooser.addObject("Right SC", FieldPosition.RIGHT_SWITCH);
+    positionChooser.addObject("Right SC", FieldPosition.RIGHT_SCALE);
 
-    SmartDashboard.putData(positionChooser);
+
 
     autoChooser.addDefault("Line Cross", AutoType.LINE_CROSS);
     autoChooser.addObject("Do Nothing", AutoType.DO_NOTHING);
-    SmartDashboard.putData(autoChooser);
+    SmartDashboard.putData("Auto", autoChooser);
+    SmartDashboard.putData("Position", positionChooser);
 
     SmartDashboard.putNumber("Auto Delay", 0);
 
