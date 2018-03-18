@@ -84,12 +84,12 @@ public class ExecuteStraightTrajectory extends Command {
       rightOutput = leftOutput - Constants.VELOCITY_INTERCEPT;
     }
 
-    Robot.chassis.setSpeed(-leftOutput, -rightOutput);
+    Robot.chassis.setSpeed(leftOutput, rightOutput);
   }
 
   @Override
   protected boolean isFinished() {
-    if (leftFollower.isFinished() && rightFollower.isFinished()) {
+    if (leftFollower.isFinished() || rightFollower.isFinished()) {
       hasRun = false;
       notifier.stop();
       return true;

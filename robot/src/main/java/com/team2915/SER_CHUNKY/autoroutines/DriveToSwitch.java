@@ -10,7 +10,7 @@ public class DriveToSwitch extends CommandGroup {
     //Should be 3.556 meters, need to measure at event
     Waypoint[] waypoints = new Waypoint[]{
         new Waypoint(0, 0, 0),
-        new Waypoint(3.556, 0, 0)
+        new Waypoint(2.54, 0, 0)
     };
     addSequential(new ExecuteStraightTrajectory(TrajectoryUtils.generateTrajectory(waypoints)));
   }

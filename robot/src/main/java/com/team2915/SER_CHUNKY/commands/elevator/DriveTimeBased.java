@@ -8,6 +8,9 @@ public class DriveTimeBased extends Command {
   double mSpeed;
   double mTime;
 
+  long startTime;
+
+
   public DriveTimeBased(double speed, double time){
     mSpeed = speed;
     mTime = time;
@@ -20,9 +23,18 @@ public class DriveTimeBased extends Command {
   }
 
   @Override
+  public synchronized void start() {
+    super.start();
+    startTime = System.currentTimeMillis();
+  }
+
+  @Override
   protected boolean isFinished()
   {
-    return true;
+    if (System.currentTimeMillis() >= startTime + mTime){
+      return true;
+    }
+    return false;
   }
 
   @Override

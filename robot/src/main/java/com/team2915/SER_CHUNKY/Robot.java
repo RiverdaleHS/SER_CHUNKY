@@ -1,10 +1,11 @@
 package com.team2915.SER_CHUNKY;
 
+import com.team2915.SER_CHUNKY.autoroutines.DriveToAutoLine;
 import com.team2915.SER_CHUNKY.autoroutines.SmartAuto;
 import com.team2915.SER_CHUNKY.autoroutines.SmartAuto.AutoType;
 import com.team2915.SER_CHUNKY.autoroutines.SmartAuto.FieldPosition;
+import com.team2915.SER_CHUNKY.commands.chassis.DriveChassisTimeBassed;
 import com.team2915.SER_CHUNKY.subsystems.Chassis;
-import com.team2915.SER_CHUNKY.subsystems.Climber;
 import com.team2915.SER_CHUNKY.subsystems.Elevator;
 import com.team2915.SER_CHUNKY.subsystems.Intake;
 import edu.wpi.cscore.CvSink;
@@ -26,7 +27,6 @@ public class Robot extends IterativeRobot {
 
 
   public static Chassis chassis = new Chassis();
-  public static Climber climber = new Climber();
   public static Elevator elevator = new Elevator();
   public static Intake intake = new Intake();
 
@@ -45,7 +45,7 @@ public class Robot extends IterativeRobot {
     super.robotInit();
     //Add our subsystems to SmartDashboard so that we can see what commands are running on them
     SmartDashboard.putData(chassis);
-    SmartDashboard.putData(climber);
+
     SmartDashboard.putData(elevator);
     SmartDashboard.putData(intake);
 
@@ -71,6 +71,7 @@ public class Robot extends IterativeRobot {
 
     autoChooser.addDefault("Line Cross", AutoType.LINE_CROSS);
     autoChooser.addObject("Do Nothing", AutoType.DO_NOTHING);
+    autoChooser.addObject("Place One", AutoType.PLACE_ONE);
     SmartDashboard.putData("Auto", autoChooser);
     SmartDashboard.putData("Position", positionChooser);
 
@@ -81,7 +82,7 @@ public class Robot extends IterativeRobot {
   @Override
   public void disabledPeriodic() {
     super.disabledPeriodic();
-
+    updateSD();
 
   }
 
@@ -96,6 +97,7 @@ public class Robot extends IterativeRobot {
   @Override
   public void teleopPeriodic() {
     super.teleopPeriodic();
+    updateSD();
     Scheduler.getInstance().run();
     SmartDashboard.putNumber("Cube Ultrasonic", intake.getCubeDistanceInches());
   }
@@ -103,26 +105,26 @@ public class Robot extends IterativeRobot {
   @Override
   public void autonomousInit() {
     super.autonomousInit();
-    String gameSpecificMessage = DriverStation.getInstance().getGameSpecificMessage();
+//    String gameSpecificMessage = DriverStation.getInstance().getGameSpecificMessage();
+//
+//    FieldPosition robotPosition = (FieldPosition) positionChooser.getSelected();
+//    AutoType autoType = (AutoType) autoChooser.getSelected();
+//    FieldPosition switchPosition;
+//    if (gameSpecificMessage.charAt(0) == 'L') {
+//      switchPosition = FieldPosition.LEFT_SWITCH;
+//    } else {
+//      switchPosition = FieldPosition.RIGHT_SWITCH;
+//    }
+//
+//    FieldPosition scalePosition;
+//    if (gameSpecificMessage.charAt(1) == 'L') {
+//      scalePosition = FieldPosition.LEFT_SCALE;
+//    } else {
+//      scalePosition = FieldPosition.RIGHT_SCALE;
+//    }
 
-    FieldPosition robotPosition = (FieldPosition) positionChooser.getSelected();
-    AutoType autoType = (AutoType) autoChooser.getSelected();
-    FieldPosition switchPosition;
-    if (gameSpecificMessage.charAt(0) == 'L') {
-      switchPosition = FieldPosition.LEFT_SWITCH;
-    } else {
-      switchPosition = FieldPosition.RIGHT_SWITCH;
-    }
-
-    FieldPosition scalePosition;
-    if (gameSpecificMessage.charAt(1) == 'L') {
-      scalePosition = FieldPosition.LEFT_SCALE;
-    } else {
-      scalePosition = FieldPosition.RIGHT_SCALE;
-    }
-
-    autoCommand = new SmartAuto(robotPosition, switchPosition, scalePosition, autoType, SmartDashboard.getNumber("Auto Delay", 0));
-    Scheduler.getInstance().add(autoCommand);
+    //autoCommand = new DriveToAutoLine();
+    Scheduler.getInstance().add(new DriveChassisTimeBassed(0.5, 2000));
 
   }
 
@@ -130,6 +132,11 @@ public class Robot extends IterativeRobot {
   public void autonomousPeriodic() {
     super.autonomousPeriodic();
     Scheduler.getInstance().run(); //TODO: is this really needed?
+    updateSD();
+  }
 
+  private void updateSD(){
+    SmartDashboard.putNumber("Left Encoder", chassis.getLeftEncoder());
+    SmartDashboard.putNumber("Right Encoder", chassis.getRightEncoder());
   }
 }

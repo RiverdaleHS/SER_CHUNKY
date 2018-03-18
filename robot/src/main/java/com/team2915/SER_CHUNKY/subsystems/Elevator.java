@@ -72,9 +72,14 @@ public class Elevator extends Subsystem {
   }
 
   public void setSpeed(double speed) {
+//    if (isUp() && speed > 0) {
+//      left.set(ControlMode.PercentOutput, 0);
+//    } else if (isDown() && speed < 0) {
+//      left.set(ControlMode.PercentOutput, 0);
+//    } else {
+//      left.set(ControlMode.PercentOutput, speed);
+//    }
     if (isUp() && speed > 0) {
-      left.set(ControlMode.PercentOutput, 0);
-    } else if (isDown() && speed < 0) {
       left.set(ControlMode.PercentOutput, 0);
     } else {
       left.set(ControlMode.PercentOutput, speed);

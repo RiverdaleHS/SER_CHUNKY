@@ -1,5 +1,7 @@
 package com.team2915.SER_CHUNKY;
 
+import com.team2915.SER_CHUNKY.commands.chassis.DriveChassisTimeBassed;
+import com.team2915.SER_CHUNKY.commands.elevator.DriveTimeBased;
 import com.team2915.SER_CHUNKY.commands.intake.CollectCube;
 import com.team2915.SER_CHUNKY.commands.intake.EjectCube;
 import edu.wpi.first.wpilibj.Joystick;
@@ -13,9 +15,14 @@ public class IO {
   private JoystickButton eject = new JoystickButton(copilot, 1);
   private JoystickButton collect = new JoystickButton(copilot, 2);
 
-  public IO(){
+  private JoystickButton timeElevator = new JoystickButton(copilot, 5);
+
+
+
+  public IO() {
     eject.whenPressed(new EjectCube());
     collect.whenPressed(new CollectCube());
+    timeElevator.whenPressed(new DriveChassisTimeBassed(0.3, 1000));
   }
 
   //Chassis
@@ -34,6 +41,10 @@ public class IO {
 
   public boolean getShiftLow() {
     return pilot.getRawButton(5);
+  }
+
+  public boolean getPinchCube() {
+    return copilot.getRawButton(3);
   }
   //Characterize
 //  public boolean getCharacterizeAddPower(){
@@ -73,8 +84,8 @@ public class IO {
 
 
   //Climber
-  public boolean getClimb() {
-    return copilot.getRawButton(4);//TODO: Test
+  public boolean getEndIntake() {
+    return copilot.getRawButton(7);
   }
 
 }

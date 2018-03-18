@@ -7,26 +7,32 @@ public class EjectCube extends Command {
 
   public EjectCube() {
     requires(Robot.intake);
+
   }
 
   @Override
   protected void execute() {
     super.execute();
-    if (Robot.intake.getCubeDistanceInches() < 2) {
-      Robot.intake.setRear(-1);
-      Robot.intake.setFront(-1);
-    } else {
-      Robot.intake.setFront(-0.8);
-      Robot.intake.setRear(-0.8);
-      Robot.intake.setOpen();
-    }
+    Robot.intake.setFront(-0.8);
+    Robot.intake.setRear(-0.8);
+    Robot.intake.setOpen();
   }
+
+
+
 
   @Override
   protected boolean isFinished() {
-    if (Robot.intake.getCubeDistanceInches() > 13) {
+    if (Robot.io.getEndIntake()){
       return true;
     }
     return false;
+
+  }
+  @Override
+  protected void end() {
+    super.end();
+    Robot.intake.setFront(0);
+    Robot.intake.setRear(0);
   }
 }

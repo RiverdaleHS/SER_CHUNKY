@@ -40,12 +40,12 @@ public class RobotMap {
       public static final double VELOCITY_FEEDFORWARD = 0.125;
       public static final double ACCELERATION_FEEDFORWARD = 0.1;
       public static final int TICKS_PER_REV = 1920;
-      public static final double WHEEL_DIAMETER = 0.3;
+      public static final double WHEEL_DIAMETER = 0.1519354839;
       public static final double TURN_PROPORTIONAL = 0;//TODO: figure out a good number and maybe add I and D
       public static final double VELOCITY_INTERCEPT = 0.05;
-      public static final double MAX_PATH_VELOCITY = 1;
-      public static final double MAX_PATH_ACCELERATION = 3;
-      public static final double MAX_PATH_JERK = 60;
+      public static final double MAX_PATH_VELOCITY = 0.75;
+      public static final double MAX_PATH_ACCELERATION = 2.5;
+      public static final double MAX_PATH_JERK = 30;
     }
   }
 
