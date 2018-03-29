@@ -1,16 +1,16 @@
 package com.team2915.SER_CHUNKY.autoroutines;
 
 
-import com.team2915.SER_CHUNKY.commands.chassis.DriveChassisTimeBassed;
+import com.team2915.SER_CHUNKY.commands.Wait;
 import com.team2915.SER_CHUNKY.commands.elevator.DriveTimeBased;
 import com.team2915.SER_CHUNKY.commands.intake.EjectCube;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 public class SmartAuto extends CommandGroup {
 
-  public SmartAuto(FieldPosition robotPosition, FieldPosition switchPosition,
-      FieldPosition scalePosition, AutoType autoType, double timeDelay) {
-    //TODO: add time delay
+  public SmartAuto(FieldPosition robotPosition, FieldPosition switchPosition, FieldPosition scalePosition, AutoType autoType, double timeDelay) {
+
+    addSequential(new Wait(timeDelay));
     switch (autoType) {
       case LINE_CROSS:
         addSequential(new DriveToAutoLine());

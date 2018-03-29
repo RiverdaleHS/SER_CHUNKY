@@ -1,22 +1,35 @@
 package com.team2915.SER_CHUNKY.commands;
 
-import edu.wpi.first.wpilibj.Timer;
+
 import edu.wpi.first.wpilibj.command.Command;
 
 public class Wait extends Command {
-//TODO: Implement entire class
-  public Wait(double time){
 
+  long startTime;
+  double mTime;
+
+
+  public Wait(double time) {
+    mTime = time;
   }
+
 
   @Override
   protected void execute() {
     super.execute();
+  }
 
+  @Override
+  public synchronized void start() {
+    super.start();
+    startTime = System.currentTimeMillis();
   }
 
   @Override
   protected boolean isFinished() {
-    return true;
+    if (System.currentTimeMillis() >= startTime + mTime) {
+      return true;
+    }
+    return false;
   }
 }
