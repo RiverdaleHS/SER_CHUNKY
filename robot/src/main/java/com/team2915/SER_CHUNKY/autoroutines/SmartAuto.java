@@ -13,8 +13,7 @@ public class SmartAuto extends CommandGroup {
     //TODO: add time delay
     switch (autoType) {
       case LINE_CROSS:
-        //addSequential(new DriveToAutoLine());
-        addSequential(new DriveChassisTimeBassed(0.3, 1000));
+        addSequential(new DriveToAutoLine());
         break;
       case PLACE_ONE:
         switch (robotPosition) {

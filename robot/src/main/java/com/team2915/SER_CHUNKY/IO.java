@@ -1,8 +1,7 @@
 package com.team2915.SER_CHUNKY;
 
 import com.team2915.SER_CHUNKY.commands.chassis.DriveChassisTimeBassed;
-import com.team2915.SER_CHUNKY.commands.elevator.DriveTimeBased;
-import com.team2915.SER_CHUNKY.commands.intake.CollectCube;
+import com.team2915.SER_CHUNKY.commands.intake.CollectCubeManual;
 import com.team2915.SER_CHUNKY.commands.intake.EjectCube;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -21,7 +20,7 @@ public class IO {
 
   public IO() {
     eject.whenPressed(new EjectCube());
-    collect.whenPressed(new CollectCube());
+    collect.whenPressed(new CollectCubeManual());
     timeElevator.whenPressed(new DriveChassisTimeBassed(0.3, 1000));
   }
 

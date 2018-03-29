@@ -3,11 +3,11 @@ package com.team2915.SER_CHUNKY.commands.intake;
 import com.team2915.SER_CHUNKY.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 
-public class CollectCube extends Command {
+public class CollectCubeManual extends Command {
 
   long timeOfLowThreshold;
 
-  public CollectCube() {
+  public CollectCubeManual() {
     requires(Robot.intake);
   }
 

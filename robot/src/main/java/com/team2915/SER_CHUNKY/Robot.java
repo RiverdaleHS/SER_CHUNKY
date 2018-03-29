@@ -105,26 +105,27 @@ public class Robot extends IterativeRobot {
   @Override
   public void autonomousInit() {
     super.autonomousInit();
-//    String gameSpecificMessage = DriverStation.getInstance().getGameSpecificMessage();
-//
-//    FieldPosition robotPosition = (FieldPosition) positionChooser.getSelected();
-//    AutoType autoType = (AutoType) autoChooser.getSelected();
-//    FieldPosition switchPosition;
-//    if (gameSpecificMessage.charAt(0) == 'L') {
-//      switchPosition = FieldPosition.LEFT_SWITCH;
-//    } else {
-//      switchPosition = FieldPosition.RIGHT_SWITCH;
-//    }
-//
-//    FieldPosition scalePosition;
-//    if (gameSpecificMessage.charAt(1) == 'L') {
-//      scalePosition = FieldPosition.LEFT_SCALE;
-//    } else {
-//      scalePosition = FieldPosition.RIGHT_SCALE;
-//    }
+    String gameSpecificMessage = DriverStation.getInstance().getGameSpecificMessage();
 
-    //autoCommand = new DriveToAutoLine();
-    Scheduler.getInstance().add(new DriveChassisTimeBassed(0.5, 2000));
+    FieldPosition robotPosition = (FieldPosition) positionChooser.getSelected();
+    AutoType autoType = (AutoType) autoChooser.getSelected();
+    FieldPosition switchPosition;
+    if (gameSpecificMessage.charAt(0) == 'L') {
+      switchPosition = FieldPosition.LEFT_SWITCH;
+    } else {
+      switchPosition = FieldPosition.RIGHT_SWITCH;
+    }
+
+    FieldPosition scalePosition;
+    if (gameSpecificMessage.charAt(1) == 'L') {
+      scalePosition = FieldPosition.LEFT_SCALE;
+    } else {
+      scalePosition = FieldPosition.RIGHT_SCALE;
+    }
+
+    autoCommand = new SmartAuto(robotPosition, switchPosition, scalePosition, autoType, SmartDashboard.getNumber("Auto Delay", 0));
+    Scheduler.getInstance().add(autoCommand);
+    //Scheduler.getInstance().add(new DriveChassisTimeBassed(0.5, 2000));
 
   }
 
