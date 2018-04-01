@@ -79,11 +79,12 @@ public class Elevator extends Subsystem {
 //    } else {
 //      left.set(ControlMode.PercentOutput, speed);
 //    }
-    if (isUp() && speed > 0) {
-      left.set(ControlMode.PercentOutput, 0);
-    } else {
-      left.set(ControlMode.PercentOutput, speed);
-    }
+//    if (isUp() && speed > 0) {
+//      left.set(ControlMode.PercentOutput, 0);
+//    } else {
+//
+//    }
+    left.set(ControlMode.PercentOutput, speed);
   }
 
   public void setMotionMagicSetpoint(double setpoint) {

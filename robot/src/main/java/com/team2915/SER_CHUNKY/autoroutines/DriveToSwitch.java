@@ -1,5 +1,6 @@
 package com.team2915.SER_CHUNKY.autoroutines;
 
+import com.team2915.SER_CHUNKY.commands.chassis.ExecuteCruvedTrajectory;
 import com.team2915.SER_CHUNKY.commands.chassis.ExecuteStraightTrajectory;
 import com.team2915.SER_CHUNKY.util.motion.TrajectoryUtils;
 import edu.wpi.first.wpilibj.command.CommandGroup;
@@ -12,7 +13,7 @@ public class DriveToSwitch extends CommandGroup {
         new Waypoint(0, 0, 0),
         new Waypoint(2.54, 0, 0)
     };
-    addSequential(new ExecuteStraightTrajectory(TrajectoryUtils.generateTrajectory(waypoints)));
+    addSequential(new ExecuteCruvedTrajectory(TrajectoryUtils.generateTrajectory(waypoints)));
   }
 
 }

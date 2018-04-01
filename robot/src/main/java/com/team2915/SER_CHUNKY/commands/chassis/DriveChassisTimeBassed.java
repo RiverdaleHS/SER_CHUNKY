@@ -41,7 +41,7 @@ public class DriveChassisTimeBassed extends Command {
     @Override
     protected void end() {
       super.end();
-      Robot.chassis.setSpeed(0, 0 + 0.1);
+      Robot.chassis.setSpeed(0, 0);
     }
 
   }

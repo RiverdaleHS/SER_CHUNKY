@@ -4,6 +4,7 @@ import com.team2915.SER_CHUNKY.Robot;
 import com.team2915.SER_CHUNKY.RobotMap.Chassis.Constants;
 import edu.wpi.first.wpilibj.Notifier;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import jaci.pathfinder.Pathfinder;
 import jaci.pathfinder.Trajectory;
 import jaci.pathfinder.followers.EncoderFollower;
@@ -49,12 +50,13 @@ public class ExecuteCruvedTrajectory extends Command {
       leftFollower.configureEncoder(Robot.chassis.getLeftEncoder(),
           Constants.TICKS_PER_REV,
           Constants.WHEEL_DIAMETER);
-      rightFollower.configureEncoder(Robot.chassis.getLeftEncoder(),
+      rightFollower.configureEncoder(Robot.chassis.getRightEncoder(),
           Constants.TICKS_PER_REV,
           Constants.WHEEL_DIAMETER);
       leftFollower.reset();
       rightFollower.reset();
       Robot.chassis.zeroNavX();
+      Robot.chassis.shiftLow();
       notifier.startPeriodic(trajectory.get(0).dt);
     }
 
@@ -68,8 +70,11 @@ public class ExecuteCruvedTrajectory extends Command {
         .boundHalfDegrees(desiredHeading - Robot.chassis.getHeading());
     double turn = Constants.TURN_PROPORTIONAL
         * angleDifference; //This is a PD loop that modifies for turning.
-    leftOutput = leftOutput - turn;
-    rightOutput = rightOutput + turn;
+    leftOutput = leftOutput + turn;
+    rightOutput = rightOutput - turn;
+
+    SmartDashboard.putNumber("Angle Error", angleDifference);
+    SmartDashboard.putNumber("Angle Correction Value", turn);
 
     if (leftOutput > 0) {
       leftOutput = leftOutput + Constants.VELOCITY_INTERCEPT;
@@ -78,13 +83,14 @@ public class ExecuteCruvedTrajectory extends Command {
       leftOutput = leftOutput - Constants.VELOCITY_INTERCEPT;
     }
     if (rightOutput > 0) {
-      rightOutput = leftOutput + Constants.VELOCITY_INTERCEPT;
+      rightOutput = rightOutput + Constants.VELOCITY_INTERCEPT;
     }
     if (rightOutput < 0) {
-      rightOutput = leftOutput - Constants.VELOCITY_INTERCEPT;
+      rightOutput = rightOutput - Constants.VELOCITY_INTERCEPT;
     }
 
-    Robot.chassis.setSpeed(-leftOutput, -rightOutput);
+    Robot.chassis.setSpeed(leftOutput,
+        rightOutput);
   }
 
   @Override

@@ -17,11 +17,11 @@ public class CollectCubeManual extends Command {
     if (Robot.io.getPinchCube()){
       Robot.intake.setClosed();
       Robot.intake.setFront(1);
-      Robot.intake.setRear(1);
+      Robot.intake.setRear(0.9);
     } else {
       Robot.intake.setOpen();
-      Robot.intake.setFront(0.28);
-      Robot.intake.setRear(1);
+      Robot.intake.setFront(1);
+      Robot.intake.setRear(0.9);
     }
   }
 

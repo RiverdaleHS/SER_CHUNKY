@@ -49,12 +49,13 @@ public class ExecuteStraightTrajectory extends Command {
       leftFollower.configureEncoder(Robot.chassis.getLeftEncoder(),
           Constants.TICKS_PER_REV,
           Constants.WHEEL_DIAMETER);
-      rightFollower.configureEncoder(Robot.chassis.getLeftEncoder(),
+      rightFollower.configureEncoder(Robot.chassis.getRightEncoder(),
           Constants.TICKS_PER_REV,
           Constants.WHEEL_DIAMETER);
       leftFollower.reset();
       rightFollower.reset();
       Robot.chassis.zeroNavX();
+      Robot.chassis.shiftLow();
       notifier.startPeriodic(trajectory.get(0).dt);
     }
 
@@ -78,10 +79,10 @@ public class ExecuteStraightTrajectory extends Command {
       leftOutput = leftOutput - Constants.VELOCITY_INTERCEPT;
     }
     if (rightOutput > 0) {
-      rightOutput = leftOutput + Constants.VELOCITY_INTERCEPT;
+      rightOutput = rightOutput + Constants.VELOCITY_INTERCEPT;
     }
     if (rightOutput < 0) {
-      rightOutput = leftOutput - Constants.VELOCITY_INTERCEPT;
+      rightOutput = rightOutput - Constants.VELOCITY_INTERCEPT;
     }
 
     Robot.chassis.setSpeed(leftOutput, rightOutput);

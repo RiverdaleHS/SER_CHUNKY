@@ -17,8 +17,8 @@ public class HoldCube extends Command {
 //      Robot.intake.setFront(0.3);
 //      Robot.intake.setRear(0.3);
 //    } else {
-      Robot.intake.setFront(0);
-      Robot.intake.setRear(0);
+      Robot.intake.setFront(0.1);
+      Robot.intake.setRear(0.1);
 //    }
   }
 

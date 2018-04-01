@@ -1,6 +1,7 @@
 package com.team2915.SER_CHUNKY.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.team2915.SER_CHUNKY.RobotMap;
 import com.team2915.SER_CHUNKY.RobotMap.Intake.Solenoids;
@@ -30,6 +31,19 @@ public class Intake extends Subsystem {
     rightFront.setInverted(false);
     leftRear.setInverted(true);
     leftFront.setInverted(true);
+    rightRear.setNeutralMode(NeutralMode.Brake);
+    leftRear.setNeutralMode(NeutralMode.Brake);
+
+
+    leftRear.configPeakCurrentLimit(25, 10); /* 35 A */
+    leftRear.configPeakCurrentDuration(200, 10); /* 200ms */
+    leftRear.configContinuousCurrentLimit(20, 10); /* 30A */
+    leftRear.enableCurrentLimit(true);
+
+    rightRear.configPeakCurrentLimit(25, 10); /* 35 A */
+    rightRear.configPeakCurrentDuration(200, 10); /* 200ms */
+    rightRear.configContinuousCurrentLimit(20, 10); /* 30A */
+    rightRear.enableCurrentLimit(true);
     cubeUltrasonic.setAutomaticMode(true);//TODO: learn more about this
     //TODO: examine starting solenoid value
   }

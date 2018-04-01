@@ -50,6 +50,37 @@ public class Chassis extends Subsystem {
     leftSlaveA.setInverted(true);
     leftSlaveB.setInverted(true);
 
+    rightMaster.configPeakCurrentLimit(35, 10); /* 35 A */
+    rightMaster.configPeakCurrentDuration(200, 10); /* 200ms */
+    rightMaster.configContinuousCurrentLimit(30, 10); /* 30A */
+    rightMaster.enableCurrentLimit(true);
+
+    rightSlaveA.configPeakCurrentLimit(35, 10); /* 35 A */
+    rightSlaveA.configPeakCurrentDuration(200, 10); /* 200ms */
+    rightSlaveA.configContinuousCurrentLimit(30, 10); /* 30A */
+    rightSlaveA.enableCurrentLimit(true);
+
+    rightSlaveB.configPeakCurrentLimit(35, 10); /* 35 A */
+    rightSlaveB.configPeakCurrentDuration(200, 10); /* 200ms */
+    rightSlaveB.configContinuousCurrentLimit(30, 10); /* 30A */
+    rightSlaveB.enableCurrentLimit(true);
+
+    leftMaster.configPeakCurrentLimit(35, 10); /* 35 A */
+    leftMaster.configPeakCurrentDuration(200, 10); /* 200ms */
+    leftMaster.configContinuousCurrentLimit(30, 10); /* 30A */
+    leftMaster.enableCurrentLimit(true);
+
+    leftSlaveA.configPeakCurrentLimit(35, 10); /* 35 A */
+    leftSlaveA.configPeakCurrentDuration(200, 10); /* 200ms */
+    leftSlaveA.configContinuousCurrentLimit(30, 10); /* 30A */
+    leftSlaveA.enableCurrentLimit(true);
+
+    leftSlaveB.configPeakCurrentLimit(35, 10); /* 35 A */
+    leftSlaveB.configPeakCurrentDuration(200, 10); /* 200ms */
+    leftSlaveB.configContinuousCurrentLimit(30, 10); /* 30A */
+    leftSlaveB.enableCurrentLimit(true);
+
+
     shiftLow();
     leftEncoder.reset();
     rightEncoder.reset();
